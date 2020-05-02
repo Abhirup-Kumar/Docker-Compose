@@ -11,10 +11,13 @@ This is a project which checks the practical knowledge of Docker and Docker-Comp
 We started with mysql and joomla. Setting up both and then integrating with each other. This system of using multiple O.S. or independent systems  tied together is termed as Multi-tier architecture. Hence here we achieve multi-tier architecture. Using the concepts of PAT , persistent storage as well.
 
 MULTI-TIER ARCHITECTURE ON DOCKER  
+
 Using docker-compose to code the whole architecture.
 MySql and Joomla were linked together.
 
+
 TOOLS / PRODUCTS USED:
+
 VMware or VirtualBox. 
 Linux O.S. (used REDHAT here).
 MySql and Joomla container image.
@@ -24,31 +27,40 @@ Client Web-browser.
 Docker-Compose.
 
 About MySQL
+
 MySQL is the world's most popular open source database. With its proven performance, reliability and ease-of-use, MySQL has become the leading database choice for web-based applications, used by high profile web properties including Facebook, Twitter, YouTube, Yahoo! and many more.
 
 About Joomla
+
 Joomla is an open source platform on which Web sites and applications can be created. It is a content management system (CMS) which connects your site to a MySQLi, MySQL, or PostgreSQL database in order to make content management and delivery easier on both the site manager and visitor.
 Joomla's primary focus has been on usability and extensibility since its initial release in 2005. It is because of this that the project has been the recipient of numerous awards, including being a three-time recipient of the PACKT Open Source Content Management System Award.
 Joomla is a completely free open source solution available to anyone and everyone with a desire to build dynamic and robust sites for a variety of purposes. Joomla has been utilized by some of the Web's most recognizable brands including Harvard, iHop, and MTV. It is capable of carrying out tasks ranging from corporate websites and blogs to social networks and e-commerce.
 
 Prior-Settings:
+
 After setting up the Linux O.S. and an active internet connection is an absolute prerequisite. 
 After we basics setup, now begin installing. Download docker-ce and install on the base O.S. Then download the container images of MySQL and Joomla.
 
 Some tweaks:
+
 Some changes are required in the system to let the infrastructure work smoothly. First we disable firewall and allow all packets in iptables. Now I know it is not safe to do both of these steps but as a beginner my focus  was mainly on setting up the docker infrastructure and didn't give much to security. For now, we can go along with this and when we finish this up we can do some tweaks in this security domain as well.
 
 For firewall:
+
 `systemctl stop firewalld`
 `systemctl disable firewalld`
 
 First command to just disable firewall but through 2nd command we permanently turn it off so that after O.S. resarts,  it doesn't get active again.
 
 For iptables:
+
 `iptables -F` 
+
 `iptables -nvL`
+
 `iptables -P FORWARD ACCEPT`
-`Iptables -nvL`
+
+`iptables -nvL`
 
 First command to flush all rules which were already set-up. 2nd to check the results for the 1st command. 3rd command to make changes in iptable and allow all traffic. Again 4th command to check the results.
 
@@ -129,14 +141,17 @@ This is a standard directory so that you don't have to specify file path while l
 And also it has to be in yml format as this is the format that docker compose take as a file for instructions.
 
 FIRING IT UP!!
+
 Now since all have been set it time to start our docker-compose and set up the desired infrastructure with this single piece of file of code.
 It is started with:
 `docker-compose up`
 
 RESULTS:
+
 To check its actual results we now test it working. For this, we go to client browser , type the IP of Joomla container which you can find by doing : `docker inspect docker_id | grep IP` . enter this in search bar of browser and if you see the home page of Joomla like the picture below:
 
 DOWN!!
+
 Now if we want to terminate the whole infrastructure we can use 
 `docker-compose down`
 This will bring down the whole setup and if you want it to rev it up again, you can use `docker-compose up` again and it’s running again.
