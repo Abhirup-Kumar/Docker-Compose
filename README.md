@@ -45,12 +45,17 @@ Systemctl disable firewalld
 First command to just disable firewall but through 2nd command we permanently turn it off so that after O.S. resarts,  it doesn't get active again.
 
 For iptables:
-iptables -F 
-iptables -nvL
-iptables -P FORWARD ACCEPT
-Iptables -nvL
+`iptables -F` 
+`iptables -nvL`
+`iptables -P FORWARD ACCEPT`
+`Iptables -nvL`
 
 First command to flush all rules which were already set-up. 2nd to check the results for the 1st command. 3rd command to make changes in iptable and allowing all traffic. Again 4th command to check the results.
+
+Begin Core:
+
+Now that's the setting up is done, lets begin with the core of the project.
+
 
 
 
