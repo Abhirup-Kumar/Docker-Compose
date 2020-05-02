@@ -39,8 +39,8 @@ Some tweaks:
 Some changes are required in the system to let the infrastructure work smoothly. First we disable firewall and allow all packets in iptables. Now I know it is not safe to do both of these steps but as a beginner my focus  was mainly on setting up the docker infrastructure and didn't give much to security. For now, we can go along with this and when we finish this up we can do some tweaks in this security domain as well.
 
 For firewall:
-Systemctl stop firewalld
-Systemctl disable firewalld
+`systemctl stop firewalld`
+`systemctl disable firewalld`
 
 First command to just disable firewall but through 2nd command we permanently turn it off so that after O.S. resarts,  it doesn't get active again.
 
@@ -54,7 +54,31 @@ First command to flush all rules which were already set-up. 2nd to check the res
 
 Begin Core:
 
-Now that's the setting up is done, lets begin with the core of the project.
+Now that the setting up is done, lets begin with the core of the project.
+
+To download the docker-ce:
+
+`yum install docker-ce`
+
+If some minor hiccups then:
+
+`yum install docker-ce --nobest`
+
+Then lets start these services:
+
+`systemctl start docker`
+`systemctl enable docker`
+
+This concludes the installing and running the docker engine. If any problems persist in installation then some changes might require in repo files, you can contact me if the problem is still there.
+
+Now we pull container images of MYSQL and Joomla:
+
+`docker pull mysql:5.7`
+`docker pull joomla`
+
+Yes, I have downloaded version 5.7 of MySQL for just some compatibility reasons.
+
+
 
 
 
