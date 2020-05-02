@@ -50,7 +50,7 @@ For iptables:
 `iptables -P FORWARD ACCEPT`
 `Iptables -nvL`
 
-First command to flush all rules which were already set-up. 2nd to check the results for the 1st command. 3rd command to make changes in iptable and allowing all traffic. Again 4th command to check the results.
+First command to flush all rules which were already set-up. 2nd to check the results for the 1st command. 3rd command to make changes in iptable and allow all traffic. Again 4th command to check the results.
 
 Begin Core:
 
@@ -64,22 +64,82 @@ If some minor hiccups then:
 
 `yum install docker-ce --nobest`
 
-Then lets start these services:
+Then let's start these services:
 
 `systemctl start docker`
 `systemctl enable docker`
 
-This concludes the installing and running the docker engine. If any problems persist in installation then some changes might require in repo files, you can contact me if the problem is still there.
+This concludes the installing and running the docker engine. If any problems persist in installation then some changes might be required in repo files, you can contact me if the problem is still there.
 
 Now we pull container images of MYSQL and Joomla:
 
+First make your account on https://hub.docker.com/ so that you can pull and push images with ease. Mainly an account is required if you want to push.
+
 `docker pull mysql:5.7`
+
+Form the website: https://hub.docker.com/_/mysql
+
+Then...
+
 `docker pull joomla`
+
+From the website : https://hub.docker.com/_/joomla
 
 Yes, I have downloaded version 5.7 of MySQL for just some compatibility reasons.
 
+Setup MySQL at both ends
+
+At both ends here means at both client and server side. MySQL working at the server side needs the client side so that we can connect to it as well.
+
+At Server Side:
+‘docker run -it -e MYSQL_ROOT_PASSWORD= your_password -e MYSQL_USER=your_user name -e MYSQL_PASSWORD=user_password -e MYSQL_DATABASE=database name --name joomladb mysql:5.7`
+
+This code will use mysql image to launch mysql server which we will connect to, for that we need its IPAddress , for this we do: 
+`docker inspect container_id | grep IP`
+
+Suppose IP is `172.18.0.2`
+
+This will bring the ip address , note it down.
+
+At client side (Base O.S.)
+`yum install mysql`
+
+After installation we need to connect to it , for this:
+`mysql -h 172.18.0.2 -u username -ppassword`
+
+Remember : NOT TO GIVE SPACE BETWEEN -p AND password.
+
+Through this we now know how to set up mysql at both server and client side.
+
+P.S. - Working with joomla is easy so we will directly configure it in docker-compose file.  
 
 
+DOCKER COMPOSE
+
+Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration. 
+Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
+Run docker-compose up and Compose starts and runs your entire app.
+
+Docker compose can be downloaded and installed here: https://docs.docker.com/compose/install/
+Once you install docker compose , go inside the specified directory.
+This is a standard directory so that you don't have to specify file path while launching docker compose.
+
+`cd /mycompose`
+`vim docker-compose.yml`
+And also it has to be in yml format as this is the format that docker compose take as a file for instructions.
+
+FIRING IT UP!!
+Now since all have been set it time to start our docker-compose and set up the desired infrastructure with this single piece of file of code.
+It is started with:
+`docker-compose up`
+
+RESULTS:
+To check its actual results we now test it working. For this, we go to client browser , type the IP of Joomla container which you can find by doing : `docker inspect docker_id | grep IP` . enter this in search bar of browser and if you see the home page of Joomla like the picture below:
+
+DOWN!!
+Now if we want to terminate the whole infrastructure we can use 
+`docker-compose down`
+This will bring down the whole setup and if you want it to rev it up again, you can use `docker-compose up` again and it’s running again.
 
 
 
