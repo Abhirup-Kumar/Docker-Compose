@@ -124,6 +124,9 @@ Remember : NOT TO GIVE SPACE BETWEEN -p AND password.
 Through this we now know how to set up mysql at both server and client side.
 
 P.S. - Working with joomla is easy so we will directly configure it in docker-compose file.  
+![Result](Screenshots/ScreenShots/CaptureFINAL9.PNG)
+![Result](Screenshots/ScreenShots/CaptureFINAL10.PNG)
+
 
 
 DOCKER COMPOSE
@@ -139,21 +142,40 @@ This is a standard directory so that you don't have to specify file path while l
 `cd /mycompose`
 `vim docker-compose.yml`
 And also it has to be in yml format as this is the format that docker compose take as a file for instructions.
+![Result](Screenshots/ScreenShots/CaptureFINAL6.PNG)
+![Result](Screenshots/ScreenShots/CaptureFINAL6.PNG)
+
+EXPLANATION:
+
+
+
 
 FIRING IT UP!!
 
 Now since all have been set it time to start our docker-compose and set up the desired infrastructure with this single piece of file of code.
 It is started with:
 `docker-compose up`
+![Result](Screenshots/ScreenShots/CaptureFINAL3.PNG)
+![Result](Screenshots/ScreenShots/CaptureFINAL4.PNG)
+![Result](Screenshots/ScreenShots/CaptureFINAL5.PNG)
+
 
 RESULTS:
 
 To check its actual results we now test it working. For this, we go to client browser , type the IP of Joomla container which you can find by doing : `docker inspect docker_id | grep IP` . enter this in search bar of browser and if you see the home page of Joomla like the picture below:
+![Result](Screenshots/ScreenShots/CaptureFINAL1.PNG)
+![Result](Screenshots/ScreenShots/CaptureFINAL2.PNG)
+![Result](Screenshots/ScreenShots/CaptureFINAL8.PNG)
+
+`In the last image you can see both of containers running.`
 
 DOWN!!
 
 Now if we want to terminate the whole infrastructure we can use 
 `docker-compose down`
+
+![Turnoff all](Screenshots/ScreenShots/CaptureFINAL11.PNG)
+
 This will bring down the whole setup and if you want it to rev it up again, you can use `docker-compose up` again and it’s running again.
 
 
