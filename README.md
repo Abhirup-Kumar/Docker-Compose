@@ -1,5 +1,5 @@
 # Docker-Compose
-Project on docker compose. Integrating MySql with Joomla while both running on separate docker O.S. 
+Project on docker compose. Integrating MySql with Joomla while both running on separate docker O.S. My first project ever. 
 
 "Beginner to Expert Level" was the title of the video I started watching on Docker. I was a beginner , just started docker with that only but now I can say that now I not only know Docker but actually pretty confident in it as well.
 It was an instructor-led live session by Mr Vimal Daga who helped me reach this stage under his IIEC-1.0 campaign.
@@ -227,19 +227,17 @@ docker-compose down
 
 This will bring down the whole setup and if you want it to rev it up again, you can use `docker-compose up` again and it’s running again.
 
-
 ## Future Works
 
-
-
-
+Well my future work on this topic will be to make it better and  make it more accessible. That is my plan is to host it on a cloud platform preferably AWS because of familiarity of that platform. Assign it a static IP address and launch on AWS with some basic services at start will be my first checkpoint.
 
 ## References:
 
 ```
-Best among all!!!
-https://www.youtube.com/playlist?list=PLAi9X1uG6jZ30QGz7FZ55A27jPeY8EwkE
+This is playlist by Mr. Vimal Daga Sir is best among all!!!
 ```
+https://www.youtube.com/playlist?list=PLAi9X1uG6jZ30QGz7FZ55A27jPeY8EwkE
+
 
 https://www.mysql.com/about/
 
