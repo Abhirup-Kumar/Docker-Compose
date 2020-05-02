@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+  joomladbos:
+    image: mysql:5.7
+    volumes:
+       - mysql_storage_db:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: abhi
+      MYSQL_PASSWORD: mysqldb
+      MYSQL_DATABASE: jumdb
+
+  JOOMOS:
+    image: joomla:latest
+    volumes:
+       - joomlav_db:/var/www/html
+    restart: always
+    depends_on:
+       - joomladbos
+    ports:
+       - 8083:80
+    environment:
+       JOOMLA_DB_HOST: joomladbos
+       JOOMLA_DB_USER: abhi
+       JOOMLA_DB_PASSWORD: mysqldb
+       JOOMLA_DB_NAME: jumdb
+
+volumes:
+    mysql_storage_db:
+    joomlav_db:
+
